@@ -24,6 +24,7 @@ body {
     --c-white: #ffffff;
     --c-grey-100: #dfe4df;
     --c-grey-500: #818181;
+    --c-white-alpha-400: rgba(255 255 255 / 0.4);
     --txt-primary: #424242;
     --txt-secondary: ;
     --txt-white: #fefefe;
@@ -49,6 +50,8 @@ body {
     --fw-medium: 700;
     --fw-bold: 900;
     --nav-height: 6rem;
+    --menu-item-width: 12rem;
+    --icon-width-nav: 2rem;
     --icon-width-1: 2.5rem;
     --icon-width-2: 3rem;
     --icon-width-3: 5rem;
@@ -60,6 +63,7 @@ body {
     --trans-t-1: 0.1s;
     --trans-t-2: 0.25s;
     --trans-t-3: 0.35s;
+    --noti-dot-width: 0.75rem;
 }
 
 svg {
@@ -68,16 +72,26 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
+    fill: var(--txt-primary);
+    stroke: var(--txt-primary);
+}
+
+#inbox_icon, #noti_icon {
+    width: var(--icon-width-nav);
+}
+
+#dash_icon {
+    width: calc(var(--icon-width-nav) * 2);
 }
 
 #main_container {
     display: grid;
     position: relative;
     /* grid-template-columns: minmax(175px, 1fr) 4fr; */
-    grid-template-columns: minmax(220px, 2fr) minmax(500px, 7fr) minmax(300px, 3fr);
+    grid-template-columns: minmax(250px, 2fr) minmax(500px, 7fr) minmax(300px, 3fr);
     grid-template-rows: auto 1fr;
     min-height: 100dvh;
-    min-width: max-content;
+    min-width: fit-content;
     background: var(--c-secondary);
 }
 
@@ -98,7 +112,8 @@ svg {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #dash_container {
@@ -111,6 +126,31 @@ svg {
 #sidebar_menu {
     padding: 0 var(--padding-m);
     justify-self: center;
+}
+
+.sidebar_item {
+    padding: var(--padding-xs) 0;
+    padding-left: var(--padding-s);
+    /* background-color: var(--c-white-alpha-400); */
+    width: var(--menu-item-width);
+    border-radius: var(--b-radius-m);
+    backdrop-filter: blur(5px);
+    transition: all var(--trans-t-2);
+}
+
+.sidebar_item:hover {
+    /* background-color: var(--c-primary-2); */
+    background-color: var(--c-white-alpha-400);
+}
+
+.sidebar_item:has(.focus) svg, .sidebar_item:active svg {
+    fill: white;
+    stroke: white;
+}
+
+.sidebar_item:has(.focus), .sidebar_item:active {
+    background-color: var(--c-primary-2);
+    color: white;
 }
 
 ul {
@@ -126,6 +166,7 @@ li > * {
     gap: var(--margin-s);
 }
 
+
 #nav {
     grid-column: 2/-1;
     display: flex;
@@ -137,8 +178,9 @@ li > * {
     top: 0;
     position: sticky;
     gap: var(--gap-m);
-    margin-bottom: var(--margin-s);
+    /* margin-bottom: var(--margin-s); */
     z-index: 2;
+    box-shadow: 0 0.5rem 0.5rem -0.5rem var(--c-grey-500);
 }
 
 #right_side {
@@ -153,16 +195,54 @@ li > * {
     align-items: center;
 }
 
+#inbox_button, #noti_button {
+    background-color: var(--c-grey-100);
+    position: relative
+}
+
+#inbox_button::before, #noti_button::before {
+    content:"";
+    position:absolute;
+    top: 0;
+    right: 0;
+    background-color: #48CFCB;
+    width: var(--noti-dot-width);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    transition: all var(--trans-t-2);
+}
+
+#inbox_button:hover, #noti_button:hover {
+    filter: brightness(105%);
+}
+
+#inbox_button:hover::before, #noti_button:hover::before {
+    transform: scale(140%);
+}
+
+#inbox_button:active, #noti_button:active {
+    filter: brightness(98%);
+    transition: all var(--trans-t-2);
+}
+
 #search_container {
     display: flex;
-    flex: 1 0 200px;
+    width: 150px;
+    min-width: 150px;
     max-width: 400px;   
+    margin-left: auto;
     background: var(--c-grey-100);
     border-radius: var(--input-height);
     /* border: var(--b-width-s) solid var(--c-primary); */
     position: relative;
     overflow: hidden;
+    transition: all cubic-bezier(0.215, 0.610, 0.355, 1) var(--trans-t-3);
     z-index: 1;
+}
+
+#search_container:focus-within {
+    flex-grow: 1;
+    transition: all cubic-bezier(0.55, 0.055, 0.675, 0.19) var(--trans-t-3);
 }
 
 #search_container::before {
@@ -186,16 +266,10 @@ li > * {
     filter: brightness(105%);
     transition: all var(--trans-t-3);
 }
-/* #search_container:has(#search_input:focus) {
-    background: var(--c-primary-100);
-    border-color: transparent;       
-} */
-/* 
-#search_container:has(#search_input:focus)::before {
-    width: 0;
-    left: 100%;
-    transition: all var(--trans-t-3);
-} */
+
+#search_container:not(:has(#search_input:focus)) .clear_search {
+    color: transparent;
+}
 
 .search {
     display: flex;
@@ -210,8 +284,8 @@ li > * {
     border: none;
     border-radius: var(--input-height);
     background: transparent;
-    padding-left: calc(var(--input-height ) + var(--padding-xs));
-    padding-right: var(--padding-s);
+    padding-left: calc(var(--input-height ) );
+    padding-right: calc(var(--padding-s) + var(--padding-xs));
 }
 
 #search_input:focus-visible {
@@ -239,7 +313,9 @@ div#search_icon {
     border: none;
     background: none;
     display: flex;
+    color: initial;
     align-items: center;
+    transition: all var(--trans-t-1);
 }
 
 #user_profile{
@@ -268,6 +344,7 @@ div#search_icon {
     padding: 0 var(--padding-m);
     grid-template-rows: auto 1fr;
     background: transparent;
+    padding-top: var(--padding-s);
 }
 
 #buttons_container {
@@ -282,21 +359,20 @@ div#search_icon {
 #buttons_container > button {
     font-weight: var(--fw-medium);
     border: none;
-    /* background: var(--c-primary); */
     color: var(--c-primary);    
     background: var(--c-primary-100);
-    /* border: var(--b-width-s) solid var(--c-primary); */
-    padding: var(--padding-xs) var(--padding-m);
+    padding: 0 var(--padding-m);
+    height:var(--input-height);
     border-radius: var(--b-radius-s);
-    transition: all var(--trans-t-1);
+    transition: all var(--trans-t-2);
     position: relative;
     overflow: hidden;
     z-index: 1; 
 }
 
 #buttons_container > button:hover {
-    transition: all var(--trans-t-1);
-    box-shadow: 0 0 0.5rem -0.25rem var(--c-grey-500), inset 0 0 0.2rem 0.1rem var(--c-white);
+    transition: all var(--trans-t-2);
+    box-shadow: 0 0.2rem 0.5rem -0.2rem var(--c-grey-500), inset 0 0 0.2rem 0.1rem var(--c-white);
 }
 
 #buttons_container > button:active {
@@ -340,16 +416,18 @@ div#search_icon {
 #sidebar2 {
     grid-column: -2 / -1;
     grid-row: 2 / -1;
-    height: calc(100dvh - var(--nav-height) - var(--margin-s) * 2); /*subtracting margins for nav and sidebar2*/ 
-    margin-bottom: var(--margin-s);
+    height: calc(100dvh - var(--nav-height)); /*subtracting margin for nav*/ 
+    /* margin-bottom: var(--margin-s); */
     display: grid;
     grid-template-rows: minmax(300px, 1fr) minmax(300px, 1fr);
     gap: var(--gap-m);
     position: sticky;
-    top: calc(var(--nav-height) + var(--margin-s));
+    top: calc(var(--nav-height));
     align-self: start;
     background: transparent;
+    padding-top: var(--padding-s);
     padding-right: var(--padding-m);
+    padding-bottom: var(--padding-s);
     overflow: auto;
 }
 
@@ -372,4 +450,8 @@ div#search_icon {
 
 #announce_container {
     grid-row: 2;
+}
+
+.project_card > div, #team_container, #announce_container {
+    box-shadow: 0.25rem 0.25rem 0.5rem var(--c-grey-100);
 }
