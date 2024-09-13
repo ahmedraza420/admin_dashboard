@@ -29,15 +29,17 @@ body {
     --txt-secondary: ;
     --txt-white: #fefefe;
     --card-bg-col: ;
-    --border-col: ;
+    --border-col: #bfbfbf;
     --button-col: ;
     --padding-xs: 0.5rem;
     --padding-s: 1.5rem;
     --padding-m: 3rem;
     --padding-l: 6rem;
+    --margin-xs: 0.5rem;
     --margin-s: 2rem;
     --margin-m: 4rem;
     --margin-l: 6rem;
+    --gap-xs: 0.25rem;
     --gap-s: 0.5rem;
     --gap-m: 1rem;
     --gap-l: 2rem;
@@ -52,6 +54,7 @@ body {
     --nav-height: 6rem;
     --menu-item-width: 12rem;
     --icon-width-nav: 2rem;
+    --icon-chatbox: 1.5rem;
     --icon-width-1: 2.5rem;
     --icon-width-2: 3rem;
     --icon-width-3: 5rem;
@@ -64,6 +67,33 @@ body {
     --trans-t-2: 0.25s;
     --trans-t-3: 0.35s;
     --noti-dot-width: 0.75rem;
+}
+
+
+#sidebar::-webkit-scrollbar,
+#members::-webkit-scrollbar,
+#announcements::-webkit-scrollbar {
+    width: 10px;
+}
+#sidebar::-webkit-scrollbar-track,
+#members ::-webkit-scrollbar-track,
+#announcements::-webkit-scrollbar-track  {
+    border-radius: 5px;
+    /* background: linear-gradient(90deg, #00000000 0%, #00000000 35%, var(--c-grey-500) 40%, var(--c-grey-500) 60%, #00000000 0%); */
+    background-color: var(--c-grey-100);
+}
+#sidebar::-webkit-scrollbar-thumb,
+#members::-webkit-scrollbar-thumb,
+#announcements::-webkit-scrollbar-thumb {
+    background-color: var(--c-primary-2);
+    border-radius: 5px;
+    box-shadow: 0 0 0.5remrem #000000;
+}
+#sidebar::-webkit-scrollbar-thumb:hover,
+#members::-webkit-scrollbar-thumb:hover,
+#announcements::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 1rem #000000;
+    border-radius: 5px;
 }
 
 svg {
@@ -225,7 +255,7 @@ li > * {
     transition: all var(--trans-t-2);
 }
 
-#search_container {
+.search_container {
     display: flex;
     width: 150px;
     min-width: 150px;
@@ -240,12 +270,12 @@ li > * {
     z-index: 1;
 }
 
-#search_container:focus-within {
+.search_container:focus-within {
     flex-grow: 1;
     transition: all cubic-bezier(0.55, 0.055, 0.675, 0.19) var(--trans-t-3);
 }
 
-#search_container::before {
+.search_container::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -257,17 +287,17 @@ li > * {
     transition: all var(--trans-t-3);
 }
 
-#search_container:has(#search_input:focus,.clear_search:active)::before {
+.search_container:has(.search_input:focus,.clear_search:active)::before {
     width: 100%;
     left: 0;
 }
 
-#search_container:hover:not(:has(#search_input:focus),:has(.clear_search:active)) {
+.search_container:hover:not(:has(.search_input:focus),:has(.clear_search:active)) {
     filter: brightness(105%);
     transition: all var(--trans-t-3);
 }
 
-#search_container:not(:has(#search_input:focus)) .clear_search {
+.search_container:not(:has(.search_input:focus)) .clear_search {
     color: transparent;
 }
 
@@ -278,7 +308,7 @@ li > * {
     width: 100%;
 }
 
-#search_input {
+.search_input {
     width: 100%;
     height: var(--input-height);
     border: none;
@@ -288,11 +318,11 @@ li > * {
     padding-right: calc(var(--padding-s) + var(--padding-xs));
 }
 
-#search_input:focus-visible {
+.search_input:focus-visible {
     outline-color: var(--c-primary);
 }
 
-div#search_icon {
+div.search_icon {
     background: transparent;
     width: var(--input-height);
     position: absolute;
@@ -303,7 +333,7 @@ div#search_icon {
     align-items: center; 
 }
 
-#search_icon > svg {
+.search_icon > svg {
     width: var(--icon-width-1);
 }
 
@@ -324,7 +354,7 @@ div#search_icon {
     gap: var(--gap-s);
 }
 
-#search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button, #user_pic {
+.search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button, #user_pic {
     width: var(--icon-width-2);
     height: var(--icon-width-2);
     aspect-ratio: 1 / 1;
@@ -403,15 +433,21 @@ div#search_icon {
 .card_container {
     /* min-height: var(--card-height); */
     min-height: fit-content;
+    aspect-ratio: 1.5 / 1;
+    position: relative;
 }
+
 
 .project_card > div {
     /* background: #999999; */
+    height: 100%;
+    width: 100%;
     background: var(--c-primary-100);
-    aspect-ratio: 1.5 / 1;
     border-radius: var(--b-radius-m);
     /* border: 1px solid black; */
 }
+
+
 
 #sidebar2 {
     grid-column: -2 / -1;
@@ -435,6 +471,7 @@ div#search_icon {
     display: grid;
     grid-template-rows: auto 1fr;
     gap: var(--gap-s);
+    
 }
 
 #sidebar2 > div > div {
@@ -442,6 +479,10 @@ div#search_icon {
     background: var(--c-primary-100);
     width: 100%;
     border-radius: var(--b-radius-s)
+}
+
+.project_card > div, #team_container, #announce_container {
+    box-shadow: 0.25rem 0.25rem 0.5rem var(--c-grey-100);
 }
 
 #team_container {
@@ -452,6 +493,74 @@ div#search_icon {
     grid-row: 2;
 }
 
-.project_card > div, #team_container, #announce_container {
-    box-shadow: 0.25rem 0.25rem 0.5rem var(--c-grey-100);
+#team_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+#team_wrapper .search_container {
+    min-width: unset;
+    width: 80%;
+    max-width: unset;
+    margin: unset;
+    margin-block: calc(var(--margin-xs) * 2);
+    flex-shrink: 0;
+}
+
+#team_wrapper .search_container:focus-within {
+    flex-grow: 0;
+}
+
+#members {
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: var(--padding-xs) calc(var(--padding-s) - var(--padding-xs));
+    gap: var(--gap-l);
+}
+
+.member {
+    display: flex;
+    gap: calc(var(--gap-xs) * 4);
+    align-items: center;
+}
+
+.member_pp {
+    width: var(--icon-width-2);
+    aspect-ratio: 1 / 1;
+    background: var(--c-grey-100);
+    border-radius: 50%;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.member_bio {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+}
+
+.message_icon > svg, .call_icon > svg {
+    width: var(--icon-chatbox);
+}
+
+#announcements {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-xs) var(--padding-s);
+    overflow: auto;
+}
+
+.announcement {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    padding-block: calc(var(--gap-xs) + var(--padding-xs));
+}
+
+.announcement ~ .announcement {
+    border-top: var(--b-width-s) solid var(--border-col);
 }
