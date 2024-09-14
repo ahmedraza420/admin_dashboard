@@ -70,6 +70,12 @@ body {
     --trans-t-2: 0.25s;
     --trans-t-3: 0.35s;
     --noti-dot-width: 0.75rem;
+    --sidebar-1-minwidth: 250px;
+    --sidebar-2-minwidth: 300px;
+    --main-minwidth: 500px;
+    --sidebar-1-fr: 2fr;
+    --sidebar-2-fr: 3fr;
+    --main-fr: 7fr;
 }
 
 h1 {
@@ -149,11 +155,12 @@ svg {
     display: grid;
     position: relative;
     /* grid-template-columns: minmax(175px, 1fr) 4fr; */
-    grid-template-columns: minmax(250px, 2fr) minmax(500px, 7fr) minmax(300px, 3fr);
+    grid-template-columns: minmax(var(--sidebar-1-minwidth), var(--sidebar-1-fr)) minmax(var(--main-minwidth), var(--main-fr)) minmax(var(--sidebar-2-minwidth), var(--sidebar-2-fr));
     grid-template-rows: auto 1fr;
     min-height: 100dvh;
     min-width: fit-content;
     background: var(--c-secondary);
+    transition: all var(--trans-t-2);
 }
 
 #header,#footer {
@@ -312,7 +319,7 @@ li > * {
     z-index: 1;
 }
 
-.search_container:focus-within {
+.search_container:focus-within, .search_container:focus {
     flex-grow: 1;
     transition: all cubic-bezier(0.55, 0.055, 0.675, 0.19) var(--trans-t-3);
 }
@@ -356,8 +363,9 @@ li > * {
     border: none;
     border-radius: var(--input-height);
     background: transparent;
-    padding-left: calc(var(--input-height ) );
+    padding-left: calc(var(--input-height) - var(--padding-xs) );
     padding-right: calc(var(--padding-s) + var(--padding-xs));
+    z-index: 1;
 }
 
 .search_input:focus-visible {
@@ -365,15 +373,14 @@ li > * {
 }
 
 div.search_icon {
-    background: transparent;
+    background: url(./images/search_icon.svg);
     width: var(--input-height);
     position: absolute;
     left: 0;
-    padding-left: var(--padding-xs);
     height: var(--input-height);
     display: flex;
     align-items: center; 
-}
+}   
 
 .search_icon > svg {
     width: var(--icon-width-1);
@@ -388,6 +395,7 @@ div.search_icon {
     color: initial;
     align-items: center;
     transition: all var(--trans-t-1);
+    z-index: 2;
 }
 
 #user_profile{
@@ -399,12 +407,18 @@ div.search_icon {
 #user_pic {
     overflow: hidden;
     border-radius: 50%;
-    width: var(--icon-width-3);
-    height: var(--icon-width-3);
+    /* width: var(--icon-width-3);
+    aspect-ratio: 1 / 1; */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0; 
+    background: var(--c-grey-500);
+    flex-shrink: 0;
+}
+
+#user_pic img {
+    width: 100%;
 }
 
 #user_profile {
@@ -412,19 +426,19 @@ div.search_icon {
     cursor: pointer;
 }
 
-#user_profile:hover {
+#user_profile:hover #user_pic {
     filter: brightness(110%);
     transition: all var(--trans-t-2);
     transform: scale(102.5%);
 }
 
-#user_profile:active {
+#user_profile:active, #user_profile:active #user_pic {
     filter: none;
     transform: none;
     color: black;
 }
 
-.search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button {
+.search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button, #user_pic {
     width: var(--icon-width-2);
     height: var(--icon-width-2);
     aspect-ratio: 1 / 1;
@@ -596,7 +610,8 @@ div.search_icon {
 }
 
 .member {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(min-content, 2fr) 6fr minmax(min-content, 2fr);
     gap: calc(var(--gap-xs) * 4);
     align-items: center;
     border-radius: var(--b-radius-s);
@@ -665,6 +680,12 @@ div.search_icon {
     margin-right: auto;
 }
 
+.contact_group {
+    display: flex;
+    gap: var(--gap-xs);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
 
 .message_icon > svg, .call_icon > svg {
     width: var(--icon-chatbox);
@@ -693,3 +714,125 @@ div.search_icon {
     border-top: var(--b-width-s) solid var(--border-col);
 }
 
+@media only screen and (max-width: 1300px) {
+    :root {
+        --sidebar-1-minwidth: 100px;
+        --sidebar-1-fr: 1fr;
+    }
+
+    #org_container {
+        display: none;
+    }
+
+    #dash {
+        display: none;
+    }
+
+
+    .sidebar_item .name {
+        display: none;
+    }
+    .sidebar_item {
+        width: var(--menu-item-height);
+        padding: 0;
+        justify-content: center;
+        transition: all var(--trans-t-3);
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #main_container {
+        grid-template-columns: minmax(100px, 1fr) 8fr;
+        grid-template-rows: auto auto;
+        /* 
+        grid-template-rows: 1fr auto;
+        gap: var(--gap-l); */
+    }
+
+    /* #sidebar {
+        position: fixed;
+        z-index: 4;
+        display: none;
+    } */
+
+    /* #nav {
+        grid-column: 1;
+        grid-row: 1; 
+        flex-wrap: wrap;
+    } */
+
+    #greet_container {
+        display: none;
+    }
+
+    .search_container{ 
+        min-width: unset;
+        width: var(--input-height);
+    }
+
+    /* .search_container:focus-within {
+
+    } */
+
+    div.search_icon {
+        padding-left: unset;
+    }
+
+    #username {
+        display: none;
+    }
+
+    #main {
+        padding-top: 0;
+    }
+/* 
+    #sidebar2 {
+        grid-column: 1;
+        grid-row: 3;
+        height: max-content;
+        position: relative;
+        top: unset;
+        left: unset;
+        right: unset;
+        grid-template-rows: auto;
+        padding: 0;
+        padding-bottom: var(--padding-s);
+    } */
+    #sidebar2 {
+        grid-column: 2;
+        grid-row: 3;
+        height: calc(100dvh / 2);
+        position: relative;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        top:unset;
+        overflow: hidden;
+        padding-top: 0;
+        padding-inline: var(--padding-s);
+    }
+    /* #sidebar2 #team_container {
+        display: none;
+        background-color: black;
+    }
+
+    #sidebar2 #announce_container {
+        grid-row: 1;
+        padding-inline: var(--padding-m);   
+    } */
+
+    #sidebar2 #announce_container, #sidebar2 #team_container {
+        grid-column: 2; 
+        grid-row: 1;
+        overflow-y: auto;
+        /* overflow-x: hidden; */
+    }
+    
+    /* #members {
+        overflow-x: hidden;
+    } */
+
+    #sidebar2 #team_container {
+        grid-column: 1;
+
+    }
+}
