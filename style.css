@@ -19,14 +19,16 @@ body {
     --c-primary: #48CFCB;
     --c-primary-2: #229799;
     --c-primary-100: #f8ffff;
+    --c-primary-alpha-300: rgb(72 207 203 / 0.3);
     --c-secondary: #e2e8f0;
     --c-accent: ;
     --c-white: #ffffff;
     --c-grey-100: #dfe4df;
     --c-grey-500: #818181;
     --c-white-alpha-400: rgba(255 255 255 / 0.4);
+    --c-black-alpha-300: rgba(0 0 0 / 0.3);
     --txt-primary: #424242;
-    --txt-secondary: ;
+    --txt-secondary: #48CFCB;
     --txt-white: #fefefe;
     --card-bg-col: ;
     --border-col: #bfbfbf;
@@ -69,6 +71,29 @@ body {
     --trans-t-3: 0.35s;
     --noti-dot-width: 0.75rem;
 }
+
+h1 {
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+h4 {
+    font-size: 1.05rem;
+    font-weight: 800;
+}
+
+button {
+    cursor: pointer;
+}
+
 
 
 #sidebar::-webkit-scrollbar,
@@ -176,11 +201,13 @@ svg {
     transition: all var(--trans-t-2);
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .sidebar_item:hover {
     /* background-color: var(--c-primary-2); */
     background-color: var(--c-white-alpha-400);
+    transition: all var(--trans-t-2);
 }
 
 .sidebar_item:has(.focus) svg, .sidebar_item:active svg {
@@ -240,7 +267,11 @@ li > * {
     position: relative
 }
 
-#inbox_button::before, #noti_button::before {
+.unread {
+    position: relative;
+}
+
+.unread::before {
     content:"";
     position:absolute;
     top: 0;
@@ -248,6 +279,7 @@ li > * {
     background-color: #48CFCB;
     width: var(--noti-dot-width);
     aspect-ratio: 1 / 1;
+    z-index: 1;
     border-radius: 50%;
     transition: all var(--trans-t-2);
 }
@@ -256,7 +288,7 @@ li > * {
     filter: brightness(105%);
 }
 
-#inbox_button:hover::before, #noti_button:hover::before {
+.unread:hover::before, .unread:hover::before, .member:hover .unread::before {
     transform: scale(140%);
 }
 
@@ -375,6 +407,23 @@ div.search_icon {
     padding: 0; 
 }
 
+#user_profile {
+    transition: all var(--trans-t-2);
+    cursor: pointer;
+}
+
+#user_profile:hover {
+    filter: brightness(110%);
+    transition: all var(--trans-t-2);
+    transform: scale(102.5%);
+}
+
+#user_profile:active {
+    filter: none;
+    transform: none;
+    color: black;
+}
+
 .search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button {
     width: var(--icon-width-2);
     height: var(--icon-width-2);
@@ -412,7 +461,7 @@ div.search_icon {
     border: none;
     color: var(--c-primary);    
     background: var(--c-primary-100);
-    padding: 0 var(--padding-m);
+    padding: 0 calc(var(--padding-xs) + var(--padding-s));
     height:var(--input-height);
     border-radius: var(--b-radius-s);
     transition: all var(--trans-t-2);
@@ -423,13 +472,14 @@ div.search_icon {
 
 #buttons_container > button:hover {
     transition: all var(--trans-t-2);
-    box-shadow: 0 0.2rem 0.5rem -0.2rem var(--c-grey-500), inset 0 0 0.2rem 0.1rem var(--c-white);
+    box-shadow: 0.75rem 0.75rem 1rem -0.75rem var(--c-black-alpha-300);
 }
 
 #buttons_container > button:active {
     box-shadow: none;
     transform: scale(95%);
     filter: brightness(99%);
+    transition: all var(--trans-t-2);
 }
 
 #projects_container {
@@ -483,9 +533,10 @@ div.search_icon {
     align-self: start;
     background: transparent;
     padding-top: var(--padding-s);
-    padding-right: var(--padding-m);
+    padding-right: var(--padding-s);
     padding-bottom: var(--padding-s);
     overflow: auto;
+    min-width: min-content;
 }
 
 #sidebar2 > div {
@@ -502,8 +553,8 @@ div.search_icon {
     border-radius: var(--b-radius-s)
 }
 
-.project_card > div, #team_container, #announce_container {
-    box-shadow: 0.25rem 0.25rem 0.5rem var(--c-grey-100);
+.project_card > div, #announcements, #team_wrapper, #buttons_container > button {
+    box-shadow: 0.5rem 0.5rem 0.5rem -0.5rem var(--c-black-alpha-300);
 }
 
 #team_container {
@@ -519,6 +570,7 @@ div.search_icon {
     flex-direction: column;
     align-items: center;
     overflow: auto;
+    /* min-width: min-content; */
 }
 
 #team_wrapper .search_container {
@@ -540,13 +592,52 @@ div.search_icon {
     flex-direction: column;
     overflow: auto;
     padding: var(--padding-xs) calc(var(--padding-s) - var(--padding-xs));
-    gap: var(--gap-l);
+    gap: var(--gap-xs);
 }
 
 .member {
     display: flex;
     gap: calc(var(--gap-xs) * 4);
     align-items: center;
+    border-radius: var(--b-radius-s);
+    padding: var(--padding-xs);
+    cursor: pointer;
+    position: relative;
+}
+
+.member:hover, .member:has(.unread:hover) {
+    background: var(--c-grey-100);
+    transition: all var(--trans-t-2);
+}
+
+.member:hover .member_pp {
+    transform: scale(105%);
+    transition: transform var(--trans-t-2);
+}
+
+.member_pp.unread::after {
+    content: "unread";
+    padding: 0.2rem 0.3rem;
+    /* background: var(--c-black-alpha-300); */
+    background: rgb(0 0 0 / 0.6);
+    backdrop-filter: blur(3px);
+    border-radius: 0.4rem;
+    position: absolute;
+    color: var(--txt-secondary);
+    z-index: 2;
+    font-size: 0.85rem;
+    bottom: calc(-1 * (var(--padding-xs)));
+    left: 50%;
+    transform: translate(-50%);
+    font-weight: 700;
+    letter-spacing: 0.1ch;
+    opacity: 0;
+    transition: all var(--trans-t-3);
+}
+.member:hover .member_pp.unread::after {
+    opacity: 1;
+    /* transition: all cubic-bezier(0.19, 1, 0.22, 1) 10s; */
+    transition: all cubic-bezier(.8,0,.8,0) 1s;
 }
 
 .member_pp {
@@ -556,10 +647,14 @@ div.search_icon {
     border-radius: 50%;
     flex-shrink: 0;
     flex-grow: 0;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--trans-t-2);
 }
 
 .team_member_pp, .user_pp {
+    border-radius: 50%;
     width: 100%;
     height: 100%;
 }
@@ -570,8 +665,14 @@ div.search_icon {
     margin-right: auto;
 }
 
+
 .message_icon > svg, .call_icon > svg {
     width: var(--icon-chatbox);
+}
+
+.message_icon > svg:hover, .call_icon > svg:hover {
+    transform: scale(120%);
+    transition: all var(--trans-t-2);
 }
 
 #announcements {
@@ -591,3 +692,4 @@ div.search_icon {
 .announcement ~ .announcement {
     border-top: var(--b-width-s) solid var(--border-col);
 }
+
