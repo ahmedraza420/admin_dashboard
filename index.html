@@ -9,6 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <title>Admin Dashboard | The Odin Project</title>
+    <style>
+        img {
+            max-width: 50vw;
+            max-height: 50vh;
+        }
+
+        svg {
+            max-width: 50vw;
+            max-height: 50vh;
+        }
+    </style>
 </head>
 <body>
     <div id="main_container">
@@ -91,7 +102,10 @@
                     </button>
                 </div>
                 <a  id="user_profile">
-                    <div id="user_pic"><svg viewBox="0 0 24 24" fill="none" style="fill: none;" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"> <path opacity="0.4" d="M12.1207 12.78C12.0507 12.77 11.9607 12.77 11.8807 12.78C10.1207 12.72 8.7207 11.28 8.7207 9.50998C8.7207 7.69998 10.1807 6.22998 12.0007 6.22998C13.8107 6.22998 15.2807 7.69998 15.2807 9.50998C15.2707 11.28 13.8807 12.72 12.1207 12.78Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="0.34" d="M18.7398 19.3801C16.9598 21.0101 14.5998 22.0001 11.9998 22.0001C9.39977 22.0001 7.03977 21.0101 5.25977 19.3801C5.35977 18.4401 5.95977 17.5201 7.02977 16.8001C9.76977 14.9801 14.2498 14.9801 16.9698 16.8001C18.0398 17.5201 18.6398 18.4401 18.7398 19.3801Z" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke=" " stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                    <div id="user_pic">
+                        <img src="./images/fred-moon-vSI2KnI4Abc-unsplash.jpg" class='user_pp' alt="user profile">
+                        <!-- https://unsplash.com/photos/man-wearing-black-notched-lapel-suit-jacket-vSI2KnI4Abc -->
+                    </div>
                     <div id="username">John Doe</div>
                 </a>
             </div>
@@ -146,7 +160,9 @@
                     </div>
                     <div id="members">
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/brian-lawson-_XKzo-Du-3w-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/woman-in-purple-fur-coat-_XKzo-Du-3w -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Alice Johnson</h4>
                                 <p class="member_designation">Frontend Developer</p>
@@ -155,7 +171,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/akshar-dave-gFCAkq8_V2Y-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/man-in-black-crew-neck-shirt-wearing-black-framed-eyeglasses-gFCAkq8_V2Y -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Ethan Smith</h4>
                                 <p class="member_designation">Backend Developer</p>
@@ -164,7 +182,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/jimmy-fermin-bqe0J0b26RQ-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/woman-staring-directly-at-camera-near-pink-wall-bqe0J0b26RQ -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Sophia Lee</h4>
                                 <p class="member_designation">UX/UI Designer</p>
@@ -173,7 +193,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/ryan-hoffman-Ft4p5E9HjTQ-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/man-in-black-crew-neck-long-sleeve-shirt-Ft4p5E9HjTQ -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Michael Brown</h4>
                                 <p class="member_designation">Full Stack Developer</p>
@@ -182,7 +204,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/ronny-sison-4lnzxFIgTmg-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/man-standing-near-window-during-daytime-4lnzxFIgTmg -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Emma Davis</h4>
                                 <p class="member_designation">Project Manager</p>
@@ -191,7 +215,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/man-standing-beside-wall-pAtA8xe_iVM -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">James Wilson</h4>
                                 <p class="member_designation">DevOps Engineer</p>
@@ -200,7 +226,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/christina-wocintechchat-com-SJvDxw0azqw-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/woman-on-focus-photography-SJvDxw0azqw -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Olivia Martinez</h4>
                                 <p class="member_designation">QA Specialist</p>
@@ -209,7 +237,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/greg-edwards-oz2wj86hGxA-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/a-man-in-a-blue-shirt-smiling-at-the-camera-oz2wj86hGxA -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Liam Anderson</h4>
                                 <p class="member_designation">Web Developer</p>
@@ -218,7 +248,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/michael-dam-mEZ3PoFGs_k-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!-- https://unsplash.com/photos/closeup-photography-of-woman-smiling-mEZ3PoFGs_k -->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Isabella Garcia</h4>
                                 <p class="member_designation">Graphic Designer</p>
@@ -227,7 +259,9 @@
                             <div class="call_icon"><svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M885.6 230.2L779.1 123.8a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L549.8 238.4a80.83 80.83 0 0 0-23.8 57.3c0 21.7 8.5 42.1 23.8 57.4l83.8 83.8A393.82 393.82 0 0 1 553.1 553 395.34 395.34 0 0 1 437 633.8L353.2 550a80.83 80.83 0 0 0-57.3-23.8c-21.7 0-42.1 8.5-57.4 23.8L123.8 664.5a80.89 80.89 0 0 0-23.8 57.4c0 21.7 8.5 42.1 23.8 57.4l106.3 106.3c24.4 24.5 58.1 38.4 92.7 38.4 7.3 0 14.3-.6 21.2-1.8 134.8-22.2 268.5-93.9 376.4-201.7C828.2 612.8 899.8 479.2 922.3 344c6.8-41.3-6.9-83.8-36.7-113.8z"></path> </g></svg></div>
                         </div>
                         <div class="member">
-                            <div class="member_pp"></div>
+                            <div class="member_pp"><img src="./images/darshan-patel-QJEVpydulGs-unsplash.jpg" class="team_member_pp" alt="profile picture">
+                                <!--  https://unsplash.com/photos/man-wearing-eyeglasses-and-blue-shirt-inside-coffee-shop-QJEVpydulGs-->
+                            </div>
                             <div class="member_bio">
                                 <h4 class="member_name">Noah Thomas</h4>
                                 <p class="member_designation">Systems Analyst</p>

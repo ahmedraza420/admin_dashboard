@@ -53,11 +53,12 @@ body {
     --fw-bold: 900;
     --nav-height: 6rem;
     --menu-item-width: 12rem;
+    --menu-item-height: 3.5rem;
     --icon-width-nav: 2rem;
     --icon-chatbox: 1.5rem;
     --icon-width-1: 2.5rem;
     --icon-width-2: 3rem;
-    --icon-width-3: 5rem;
+    --icon-width-3: 3.5rem;
     --input-height: 3rem;
     --card-height: 270px;
     --b-radius-s: 0.5rem;
@@ -76,7 +77,7 @@ body {
     width: 10px;
 }
 #sidebar::-webkit-scrollbar-track,
-#members ::-webkit-scrollbar-track,
+#members::-webkit-scrollbar-track,
 #announcements::-webkit-scrollbar-track  {
     border-radius: 5px;
     /* background: linear-gradient(90deg, #00000000 0%, #00000000 35%, var(--c-grey-500) 40%, var(--c-grey-500) 60%, #00000000 0%); */
@@ -87,13 +88,18 @@ body {
 #announcements::-webkit-scrollbar-thumb {
     background-color: var(--c-primary-2);
     border-radius: 5px;
-    box-shadow: 0 0 0.5remrem #000000;
+    /* box-shadow: 0 0 0.5rem #000000; */
 }
 #sidebar::-webkit-scrollbar-thumb:hover,
 #members::-webkit-scrollbar-thumb:hover,
 #announcements::-webkit-scrollbar-thumb:hover {
     box-shadow: 0 0 1rem #000000;
-    border-radius: 5px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:active,
+#members::-webkit-scrollbar-thumb:active,
+#announcements::-webkit-scrollbar-thumb:active {
+    box-shadow: none;
 }
 
 svg {
@@ -159,13 +165,17 @@ svg {
 }
 
 .sidebar_item {
-    padding: var(--padding-xs) 0;
+    /* padding: var(--padding-xs) 0; */
+    height: var(--menu-item-height);
     padding-left: var(--padding-s);
     /* background-color: var(--c-white-alpha-400); */
     width: var(--menu-item-width);
-    border-radius: var(--b-radius-m);
+    /* border-radius: var(--b-radius-m); */
+    border-radius: var(--menu-item-height);
     backdrop-filter: blur(5px);
     transition: all var(--trans-t-2);
+    display: flex;
+    align-items: center;
 }
 
 .sidebar_item:hover {
@@ -354,7 +364,18 @@ div.search_icon {
     gap: var(--gap-s);
 }
 
-.search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button, #user_pic {
+#user_pic {
+    overflow: hidden;
+    border-radius: 50%;
+    width: var(--icon-width-3);
+    height: var(--icon-width-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; 
+}
+
+.search_icon, #inbox_container, #noti_container, #inbox_button, #noti_button {
     width: var(--icon-width-2);
     height: var(--icon-width-2);
     aspect-ratio: 1 / 1;
@@ -535,6 +556,12 @@ div.search_icon {
     border-radius: 50%;
     flex-shrink: 0;
     flex-grow: 0;
+    overflow: hidden;
+}
+
+.team_member_pp, .user_pp {
+    width: 100%;
+    height: 100%;
 }
 
 .member_bio {
