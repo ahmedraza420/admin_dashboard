@@ -13,6 +13,7 @@ body {
     height: 100%;
     overflow-y: auto;
     color: var(--txt-primary);
+    background-color: var(--c-secondary);
 }
 
 :root {
@@ -24,6 +25,7 @@ body {
     --c-accent: ;
     --c-white: #ffffff;
     --c-grey-100: #dfe4df;
+    --c-grey-300: #c0c5c0;
     --c-grey-500: #818181;
     --c-white-alpha-400: rgba(255 255 255 / 0.4);
     --c-black-alpha-300: rgba(0 0 0 / 0.3);
@@ -207,6 +209,7 @@ input[type="checkbox"]:checked > svg {
     align-items: center;
     overflow-x: hidden;
     overflow-y: auto;
+    height: 100%;
 }
 
 #dash_container {
@@ -264,7 +267,8 @@ ul > * {
 li > * {
     display: flex;
     align-items: center;
-    gap: var(--gap-s);
+    gap: var(--gap-m);
+    line-height: 0;
 }
 
 
@@ -597,11 +601,25 @@ div.search_icon {
 
 .pr_details_btn svg {
     width: 100%;
+    stroke: var(--txt-primary);
+    fill: var(--txt-primary);
 }
 
 .pr_details_btn:hover {
     transform: scale(115%);
     transition: all var(--trans-t-2);
+}
+
+.pr_details_btn:active svg {
+    transform: unset;
+    stroke: var(--c-primary-2);
+    fill: var(--c-primary-2);
+    transition: all var(--trans-t-2);
+}
+
+.project_name {
+    /* color: var(--c-primary-2); */
+    color: inherit;
 }
 
 .project_desc {
@@ -715,7 +733,7 @@ div.search_icon {
     position: relative;
 }
 
-.member:hover, .member:has(.unread:hover) {
+.member:hover {
     background: var(--c-grey-100);
     transition: all var(--trans-t-2);
 }
@@ -723,6 +741,14 @@ div.search_icon {
 .member:hover .member_pp {
     transform: scale(105%);
     transition: transform var(--trans-t-2);
+}
+
+.member:active {
+    background-color: var(--c-grey-300);
+}
+
+.member:active .member_pp {
+    transform: unset;
 }
 
 .member_pp.unread::after {
@@ -834,22 +860,32 @@ div.search_icon {
 }
 
 @media only screen and (max-width: 900px) {
-    #main_container {
-        grid-template-columns: minmax(100px, 1fr) 8fr;
-        grid-template-rows: auto auto;
+    :root {
+        --card-height: 17rem;
+        --sidebar-width: 5rem;
+        --nav-height: 5rem;
     }
 
-    /* #sidebar {
+    #main_container {
+        grid-template-columns: minmax(var(--sidebar-width), 1fr) 8fr;
+        grid-template-rows: var(--nav-height    ) auto;
+    }
+
+    #sidebar {
         position: fixed;
         z-index: 4;
-        display: none;
-    } */
+        width: var(--sidebar-width);
+    }
 
-    /* #nav {
-        grid-column: 1;
-        grid-row: 1; 
-        flex-wrap: wrap;
-    } */
+    #sidebar_menu {
+        padding: calc(var(--padding-xs) * 2);
+    }
+
+    #nav {
+        position: fixed;
+        right: 0;
+        width: calc(100% - var(--sidebar-width)); 
+    }
 
     #greet_container {
         display: none;
@@ -873,8 +909,9 @@ div.search_icon {
     }
 
     #main {
-        padding-top: 0;
+        padding-top: var(--padding-s);
     }
+
 /* 
     #sidebar2 {
         grid-column: 1;
@@ -897,8 +934,10 @@ div.search_icon {
         grid-template-rows: auto;
         top:unset;
         overflow: hidden;
-        padding-top: 0;
+        padding-top: var(--padding-s);
         padding-inline: var(--padding-s);
+        display: flex;
+        min-width: min-content;
     }
     /* #sidebar2 #team_container {
         display: none;
@@ -913,8 +952,9 @@ div.search_icon {
     #sidebar2 #announce_container, #sidebar2 #team_container {
         grid-column: 2; 
         grid-row: 1;
+        flex: 1 0 230px;
         overflow-y: auto;
-        /* overflow-x: hidden; */
+        min-width: 230px;
     }
     
     /* #members {
