@@ -60,7 +60,7 @@ body {
     --icon-width-2: 3rem;
     --icon-width-3: 3.5rem;
     --input-height: 3rem;
-    --card-height: 270px;
+    --card-height: 17.5rem;
     --b-radius-s: 0.5rem;
     --b-radius-m: 0.75rem;
     --b-radius-l: 1rem;
@@ -73,10 +73,11 @@ body {
     --noti-dot-width: 0.75rem;
     --sidebar-1-minwidth: 250px;
     --sidebar-2-minwidth: 300px;
+    --sidebar-2-height: 22rem;
     --main-minwidth: 500px;
-    --sidebar-1-fr: 2fr;
+    --sidebar-1-fr: 1fr;
     --sidebar-2-fr: 3fr;
-    --main-fr: 7fr;
+    --main-fr: 9fr;
     --fs-h1: 2.4rem;
     --fs-h2: 1.7rem;
     --fs-h3: 1.3rem;
@@ -212,6 +213,75 @@ input[type="checkbox"]:checked > svg {
     height: 100%;
 }
 
+#burger_menu_container {
+    width: var(--icon-width-nav);
+    height: var(--icon-width-nav);
+    min-height: var(--icon-width-nav);
+    position: relative;
+    display: none;
+}
+
+input[type="checkbox"] {
+    display: none;
+    appearance: none;
+    -webkit-appearance: none;
+    visibility: hidden;
+}
+
+.burger {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.burger span {
+    background: var(--txt-primary);
+    height: 20%;
+    width: 100%;
+    position: absolute;
+    border-radius: 100px;
+    left: 0;
+    transition: all var(--trans-t-3) ease;
+}
+
+.burger .top {
+    top: 0;
+}
+
+.burger .middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.burger .bottom {
+    bottom: 0;
+}
+
+#burger_menu_container:has(input[type]:checked) span {
+    transition: all var(--trans-t-3) ease;
+}
+
+#burger_menu_container:has(input[type]:checked) .top {
+    transform-origin: top left;
+    transform: rotate(45deg);
+    left: 15%;
+    width: 120%;
+}
+
+#burger_menu_container:has(input[type]:checked) .middle {
+    left: -100%;
+    opacity: 0;
+}
+
+#burger_menu_container:has(input[type]:checked) .bottom {
+    transform-origin: bottom left;
+    transform: rotate(-45deg);
+    left: 15%;
+    width: 120%;
+}
+
 #dash_container {
     display: flex;
     justify-content: center;
@@ -223,6 +293,7 @@ input[type="checkbox"]:checked > svg {
     padding: 0 var(--padding-m);
     justify-self: center;
 }
+
 
 .sidebar_item {
     height: var(--menu-item-height);
@@ -262,15 +333,23 @@ ul {
 /* 
 ul > * {
     width: 100%;
-} */
-
-li > * {
+    } */
+    
+    li > * {
     display: flex;
     align-items: center;
     gap: var(--gap-m);
     line-height: 0;
 }
 
+.menu_icon {
+    width: var(--icon-width-nav);
+    height: var(--icon-width-nav);
+}
+
+.menu_icon > svg {
+    width: 100%;
+}
 
 #nav {
     grid-column: 2/-1;
@@ -839,31 +918,76 @@ div.search_icon {
         --sidebar-1-fr: 1fr;
     }
 
+    #burger_menu_container {
+        display: block;
+    }
+
     #org_container {
         display: none;
     }
 
-    #dash {
+    #dash_container {
         display: none;
     }
 
+    #sidebar {
+        position: fixed;
+        width: var(--sidebar-1-minwidth);
+        z-index: 4;
+        transition: all var(--trans-t-3) ease;
+    }
 
+    /* #sidebar::before {
+        content: "";
+        height: 100dvh;
+        width: 100dvw;
+        background-color: var(--c-black-alpha-300);
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    } */
     .sidebar_item .name {
         display: none;
     }
     .sidebar_item {
-        width: var(--menu-item-height);
-        padding: 0;
+        min-width: var(--menu-item-height);
+        padding: 0 var(--padding-xs);
         justify-content: center;
         transition: all var(--trans-t-3);
+    }
+
+    #sidebar:has(input[type]:checked) {
+        /* width: var(--sidebar--minwidth); */
+        --sidebar-width: 200px;
+        transition: all var(--trans-t-3) ease;
+    }
+
+    #sidebar:has(input[type]:checked) #burger_menu_container {
+        align-self: flex-end;
+        margin: 0 var(--padding-s);
+    }
+
+    #sidebar:has(input[type]:checked) .sidebar_item .name {
+        display: inline;
+    }
+
+    #nav {
+        position: fixed;
+        right: 0;
+        width: calc(100% - var(--sidebar-1-minwidth));
     }
 }
 
 @media only screen and (max-width: 900px) {
     :root {
-        --card-height: 17rem;
+        --card-height: 16.5rem;
         --sidebar-width: 5rem;
         --nav-height: 5rem;
+    }
+
+    #dash_icon {
+        width: var(--icon-width-1);
     }
 
     #main_container {
@@ -892,7 +1016,7 @@ div.search_icon {
     }
 
     .search_container{ 
-        min-width: unset;
+        min-width: var(--input-height);
         width: var(--input-height);
     }
 
@@ -928,7 +1052,8 @@ div.search_icon {
     #sidebar2 {
         grid-column: 2;
         grid-row: 3;
-        height: calc(100dvh / 2);
+        /* height: calc(100dvh / 2); */
+        height: fit-content;
         position: relative;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
@@ -938,6 +1063,7 @@ div.search_icon {
         padding-inline: var(--padding-s);
         display: flex;
         min-width: min-content;
+
     }
     /* #sidebar2 #team_container {
         display: none;
@@ -952,9 +1078,10 @@ div.search_icon {
     #sidebar2 #announce_container, #sidebar2 #team_container {
         grid-column: 2; 
         grid-row: 1;
-        flex: 1 0 230px;
+        flex: 1 0 var(--sidebar-2-minwidth);
         overflow-y: auto;
-        min-width: 230px;
+        min-width: var(--sidebar-2-minwidth);
+        height: var(--sidebar-2-height);
     }
     
     /* #members {
@@ -964,5 +1091,18 @@ div.search_icon {
     #sidebar2 #team_container {
         grid-column: 1;
 
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    #sidebar2 #team_container {
+        display: none;
+        background-color: black;
+    }
+
+    #sidebar2 #announce_container {
+        grid-row: 1;
+        padding-inline: var(--padding-m);   
+        height: unset;
     }
 }
