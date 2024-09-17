@@ -756,7 +756,7 @@ div.search_icon {
     box-shadow: 1rem 1rem 1rem -1rem var(--c-black-alpha-300);
 }    
 
-.project_img_container:hover + .project_details {
+.project_img_container:hover + .project_details, .project_img_container.hovered + .project_details {
     height: calc(var(--padding-s) * 2 + var(--fs-h3-2));
     box-shadow: 0 -0.25rem 0.25rem -0.25rem var(--c-black-alpha-300);
 }
