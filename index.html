@@ -21,14 +21,7 @@
         <div id="header">
         </div>
         <div id="sidebar">
-            <div id="burger_menu_container" class="sidebar_toggle_container">
-                <label class="burger" for="check">
-                    <input type="checkbox" id="check">
-                    <span class="top"></span>
-                    <span class="middle"></span>
-                    <span class="bottom"></span>
-                </label>
-            </div>
+            <input type="checkbox" id="check">
             <div id="org_container">
                 <h1 id="org_name">Earthly</h1>
             </div>
@@ -85,35 +78,46 @@
             </ul>
         </div>
         <div id="nav">
-            <div id="greet_container">
-                <h3 id="greeting">Welcome Back, John.</h3>
-                <h4 id="inbox_info">You have new messages</h4>
-            </div>
-            <div class="search_container">
-                <form class="dashboard_search search">
-                    <input class="search_input" placeholder="search...">
-                    <button type="reset" class="clear_search" onclick="this.closest('form').querySelector('.search_input').focus()">✖</button>
-                    <div class="search_icon"><!--<svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M768 713.7L630.2 575.9c22.3-32.8 35.4-72.4 35.4-115.1 0-113.1-91.7-204.8-204.8-204.8S256 347.7 256 460.8s91.7 204.8 204.8 204.8c42.7 0 82.3-13.1 115.1-35.4L713.7 768l54.3-54.3zM332.8 460.8c0-70.6 57.4-128 128-128s128 57.4 128 128-57.4 128-128 128-128-57.4-128-128z"></path></g></svg>--></div>
-                </form>
-            </div>
-            <div id="right_side">
-                <div id="inbox_container">
-                    <button id="inbox_button" class="unread" title="inbox">
-                        <svg id="inbox_icon" viewBox="0 0 24 24" fill="none" style="fill: none;" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.7"></g><g id="SVGRepo_iconCarrier"> <path d="M3 12V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.0799 19 6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V12M3 12H6.67452C7.16369 12 7.40829 12 7.63846 12.0553C7.84254 12.1043 8.03763 12.1851 8.21657 12.2947C8.4184 12.4184 8.59136 12.5914 8.93726 12.9373L9.06274 13.0627C9.40865 13.4086 9.5816 13.5816 9.78343 13.7053C9.96237 13.8149 10.1575 13.8957 10.3615 13.9447C10.5917 14 10.8363 14 11.3255 14H12.6745C13.1637 14 13.4083 14 13.6385 13.9447C13.8425 13.8957 14.0376 13.8149 14.2166 13.7053C14.4184 13.5816 14.5914 13.4086 14.9373 13.0627L15.0627 12.9373C15.4086 12.5914 15.5816 12.4184 15.7834 12.2947C15.9624 12.1851 16.1575 12.1043 16.3615 12.0553C16.5917 12 16.8363 12 17.3255 12H21M3 12L5.32639 6.83025C5.78752 5.8055 6.0181 5.29312 6.38026 4.91755C6.70041 4.58556 7.09278 4.33186 7.52691 4.17615C8.01802 4 8.57988 4 9.70361 4H14.2964C15.4201 4 15.982 4 16.4731 4.17615C16.9072 4.33186 17.2996 4.58556 17.6197 4.91755C17.9819 5.29312 18.2125 5.8055 18.6736 6.83025L21 12" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                    </button>
+            <div class="burger_menu_wrapper">
+                <div id="burger_menu_container" class="sidebar_toggle_container">
+                    <label class="burger" for="check">
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+                    </label>
                 </div>
-                <div id="noti_container">
-                    <button id="noti_button" class="unread" title="notifications">
-                        <svg id='noti_icon' fill="un" viewBox="0 0 24 24" id="notification-copy" xmlns="http://www.w3.org/2000/svg" class="icon line"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.576"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M19.38,14.38a2.12,2.12,0,0,1,.62,1.5h0A2.12,2.12,0,0,1,17.88,18H6.12A2.12,2.12,0,0,1,4,15.88H4a2.12,2.12,0,0,1,.62-1.5L6,13V9a6,6,0,0,1,6-6h0a6,6,0,0,1,6,6v4ZM15,18H9a3,3,0,0,0,3,3h0A3,3,0,0,0,15,18Z" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width:1.9200000000000004;"></path></g></svg>
-                    </button>
+            </div>
+            <div id="nav_content_wrapper">
+                <div id="greet_container">
+                    <h3 id="greeting">Welcome Back, John.</h3>
+                    <h4 id="inbox_info">You have new messages</h4>
                 </div>
-                <a  id="user_profile" title="see profile">
-                    <div id="user_pic">
-                        <img src="./images/fred-moon-vSI2KnI4Abc-unsplash.jpg" class='user_pp' alt="user profile">
-                        <!-- https://unsplash.com/photos/man-wearing-black-notched-lapel-suit-jacket-vSI2KnI4Abc -->
+                <div class="search_container">
+                    <form class="dashboard_search search">
+                        <input class="search_input" placeholder="search...">
+                        <button type="reset" class="clear_search" onclick="this.closest('form').querySelector('.search_input').focus()">✖</button>
+                        <div class="search_icon"><!--<svg fill="" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M768 713.7L630.2 575.9c22.3-32.8 35.4-72.4 35.4-115.1 0-113.1-91.7-204.8-204.8-204.8S256 347.7 256 460.8s91.7 204.8 204.8 204.8c42.7 0 82.3-13.1 115.1-35.4L713.7 768l54.3-54.3zM332.8 460.8c0-70.6 57.4-128 128-128s128 57.4 128 128-57.4 128-128 128-128-57.4-128-128z"></path></g></svg>--></div>
+                    </form>
+                </div>
+                <div id="right_side">
+                    <div id="inbox_container">
+                        <button id="inbox_button" class="unread" title="inbox">
+                            <svg id="inbox_icon" viewBox="0 0 24 24" fill="none" style="fill: none;" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.7"></g><g id="SVGRepo_iconCarrier"> <path d="M3 12V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.0799 19 6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V12M3 12H6.67452C7.16369 12 7.40829 12 7.63846 12.0553C7.84254 12.1043 8.03763 12.1851 8.21657 12.2947C8.4184 12.4184 8.59136 12.5914 8.93726 12.9373L9.06274 13.0627C9.40865 13.4086 9.5816 13.5816 9.78343 13.7053C9.96237 13.8149 10.1575 13.8957 10.3615 13.9447C10.5917 14 10.8363 14 11.3255 14H12.6745C13.1637 14 13.4083 14 13.6385 13.9447C13.8425 13.8957 14.0376 13.8149 14.2166 13.7053C14.4184 13.5816 14.5914 13.4086 14.9373 13.0627L15.0627 12.9373C15.4086 12.5914 15.5816 12.4184 15.7834 12.2947C15.9624 12.1851 16.1575 12.1043 16.3615 12.0553C16.5917 12 16.8363 12 17.3255 12H21M3 12L5.32639 6.83025C5.78752 5.8055 6.0181 5.29312 6.38026 4.91755C6.70041 4.58556 7.09278 4.33186 7.52691 4.17615C8.01802 4 8.57988 4 9.70361 4H14.2964C15.4201 4 15.982 4 16.4731 4.17615C16.9072 4.33186 17.2996 4.58556 17.6197 4.91755C17.9819 5.29312 18.2125 5.8055 18.6736 6.83025L21 12" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
                     </div>
-                    <h4 id="username">John Doe</h4>
-                </a>
+                    <div id="noti_container">
+                        <button id="noti_button" class="unread" title="notifications">
+                            <svg id='noti_icon' fill="un" viewBox="0 0 24 24" id="notification-copy" xmlns="http://www.w3.org/2000/svg" class="icon line"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.576"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M19.38,14.38a2.12,2.12,0,0,1,.62,1.5h0A2.12,2.12,0,0,1,17.88,18H6.12A2.12,2.12,0,0,1,4,15.88H4a2.12,2.12,0,0,1,.62-1.5L6,13V9a6,6,0,0,1,6-6h0a6,6,0,0,1,6,6v4ZM15,18H9a3,3,0,0,0,3,3h0A3,3,0,0,0,15,18Z" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width:1.9200000000000004;"></path></g></svg>
+                        </button>
+                    </div>
+                    <a  id="user_profile" title="see profile">
+                        <div id="user_pic">
+                            <img src="./images/fred-moon-vSI2KnI4Abc-unsplash.jpg" class='user_pp' alt="user profile">
+                            <!-- https://unsplash.com/photos/man-wearing-black-notched-lapel-suit-jacket-vSI2KnI4Abc -->
+                        </div>
+                        <h4 id="username">John Doe</h4>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="main">

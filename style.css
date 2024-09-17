@@ -54,6 +54,8 @@ body {
     --nav-height: 6rem;
     --menu-item-width: 12rem;
     --menu-item-height: 3.5rem;
+    --search-normal-width: 150px;
+    --search-focus-width: 400px;
     --icon-width-nav: 2rem;
     --icon-chatbox: 1.5rem;
     --icon-width-1: 2.5rem;
@@ -78,6 +80,7 @@ body {
     --sidebar-1-fr: 1fr;
     --sidebar-2-fr: 3fr;
     --main-fr: 9fr;
+    --announcement-max-width: 50ch;
     --fs-h1: 2.4rem;
     --fs-h2: 1.7rem;
     --fs-h3: 1.3rem;
@@ -85,6 +88,10 @@ body {
     --fs-h4: 0.95rem;
     --fs-h6: 0.8rem;
 
+}
+
+p {
+    font-size: 1rem;
 }
 
 h1 {
@@ -197,27 +204,37 @@ input[type="checkbox"]:checked > svg {
 
 #sidebar {
     grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-row: 2;
     padding: var(--padding-s) 0;
     text-align: center;
     background: var(--c-primary);
-    height: 100dvh;
+    height: calc(100dvh - var(--nav-height));
     position: sticky;
-    top: 0;
+    top: var(--nav-height);
     align-self: start;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 100%;
+    transition: all var(--trans-t-3) ease;  
+}
+
+.burger_menu_wrapper {
+    height: var(--nav-height);
+    min-width: var(--icon-width-nav);
+    padding: 0 var(--padding-m);
+    transition: all var(--trans-t-3) ease;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 #burger_menu_container {
-    width: var(--icon-width-nav);
-    height: var(--icon-width-nav);
-    min-height: var(--icon-width-nav);
-    position: relative;
+    width: calc(var(--icon-width-nav)/1.25);
+    height: calc(var(--icon-width-nav)/1.25);
+    /* min-height: var(--icon-width-nav); */
+    transition: all var(--trans-t-3) ease;
     display: none;
 }
 
@@ -259,28 +276,32 @@ input[type="checkbox"] {
     bottom: 0;
 }
 
-#burger_menu_container:has(input[type]:checked) span {
+#main_container:has(input[type]:checked) #burger_menu_container {
+    transition: all var(--trans-t-3) ease;
+}
+#main_container:has(input[type]:checked) #burger_menu_container span {
     transition: all var(--trans-t-3) ease;
 }
 
-#burger_menu_container:has(input[type]:checked) .top {
+/* #main_container:has(input[type]:checked) #burger_menu_container .top {
     transform-origin: top left;
     transform: rotate(45deg);
     left: 15%;
     width: 120%;
 }
 
-#burger_menu_container:has(input[type]:checked) .middle {
+#main_container:has(input[type]:checked) #burger_menu_container .middle {
     left: -100%;
+    width: 0;
     opacity: 0;
 }
 
-#burger_menu_container:has(input[type]:checked) .bottom {
+#main_container:has(input[type]:checked) #burger_menu_container .bottom {
     transform-origin: bottom left;
     transform: rotate(-45deg);
     left: 15%;
     width: 120%;
-}
+} */
 
 #dash_container {
     display: flex;
@@ -298,8 +319,7 @@ input[type="checkbox"] {
 .sidebar_item {
     height: var(--menu-item-height);
     padding: 0 var(--padding-s);
-    /* width: var(--menu-item-width); */
-    width: 100%;    
+    /* width: var(--menu-item-width); */  
     border-radius: var(--menu-item-height);
     backdrop-filter: blur(5px);
     transition: all var(--trans-t-2);
@@ -335,7 +355,7 @@ ul > * {
     width: 100%;
     } */
     
-    li > * {
+li > * {
     display: flex;
     align-items: center;
     gap: var(--gap-m);
@@ -352,18 +372,28 @@ ul > * {
 }
 
 #nav {
-    grid-column: 2/-1;
-    display: flex;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(var(--sidebar-1-minwidth), auto) 1fr;
     justify-content: space-between;
     align-items: center;
     background: var(--c-primary-100);
     height: var(--nav-height);
-    padding: 0 var(--padding-m);
+    padding-right: var(--padding-s);
     top: 0;
     position: sticky;
-    gap: var(--gap-m);
     z-index: 2;
     box-shadow: 0 0.5rem 0.5rem -0.5rem var(--c-grey-500);
+    transition: all var(--trans-t-3) ease;
+}
+
+#nav_content_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap-m);
+    height: 100%;
+    width: 100%;
 }
 
 #right_side {
@@ -415,9 +445,10 @@ ul > * {
 
 .search_container {
     display: flex;
-    width: 150px;
-    min-width: 150px;
-    max-width: 400px;   
+    /* width: 150px; */
+    flex-basis: var(--search-normal-width);
+    min-width: var(--search-normal-width);
+    max-width: var(--search-focus-width);  
     margin-left: auto;
     background: var(--c-grey-100);
     border-radius: var(--input-height);
@@ -557,7 +588,7 @@ div.search_icon {
 }
 
 #main {
-    grid-column: 2 / -2;
+    grid-column: 2;
     grid-row: 2;
     display: grid;
     gap: var(--gap-m);
@@ -732,8 +763,8 @@ div.search_icon {
 
 
 #sidebar2 {
-    grid-column: -2 / -1;
-    grid-row: 2 / -1;
+    grid-column: 3;
+    grid-row: 2;
     height: calc(100dvh - var(--nav-height)); 
     display: grid;
     grid-template-rows: minmax(300px, 1fr) minmax(300px, 1fr);
@@ -785,7 +816,7 @@ div.search_icon {
     max-width: unset;
     margin: unset;
     margin-block: calc(var(--margin-xs) * 2);
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
 }
 
 #team_wrapper .search_container:focus-within {
@@ -918,20 +949,27 @@ div.search_icon {
         --sidebar-1-fr: 1fr;
     }
 
+    .burger_menu_wrapper {
+        padding: 0;
+        margin: auto;
+        
+    }
+
     #burger_menu_container {
         display: block;
     }
 
     #org_container {
         display: none;
-    }
+    }   
 
     #dash_container {
         display: none;
     }
 
     #sidebar {
-        position: fixed;
+        /* position: fixed; */
+        /* position: sticky; */
         width: var(--sidebar-1-minwidth);
         z-index: 4;
         transition: all var(--trans-t-3) ease;
@@ -947,42 +985,52 @@ div.search_icon {
         left: 0;
 
     } */
+    #sidebar_menu {
+        --menu-item-height: 3rem;
+        gap: var(--gap-s);
+    }
+
     .sidebar_item .name {
         display: none;
     }
     .sidebar_item {
         min-width: var(--menu-item-height);
-        padding: 0 var(--padding-xs);
+        /* padding: 0 var(--padding-xs); */
+        padding: 0;
         justify-content: center;
         transition: all var(--trans-t-3);
     }
 
     #sidebar:has(input[type]:checked) {
-        /* width: var(--sidebar--minwidth); */
         --sidebar-width: 200px;
+        width: var(--sidebar-width);
         transition: all var(--trans-t-3) ease;
     }
 
-    #sidebar:has(input[type]:checked) #burger_menu_container {
-        align-self: flex-end;
-        margin: 0 var(--padding-s);
+    #main_container:has(input[id='check']:checked) .burger span {
+        background-color: var(--c-primary);
+    }
+
+    #sidebar:has(input[type]:checked) .sidebar_item {
+        padding: 0 calc(var(--padding-s)* 3);
     }
 
     #sidebar:has(input[type]:checked) .sidebar_item .name {
         display: inline;
     }
-
+/*
     #nav {
         position: fixed;
         right: 0;
         width: calc(100% - var(--sidebar-1-minwidth));
-    }
+    }*/
 }
 
 @media only screen and (max-width: 900px) {
     :root {
         --card-height: 16.5rem;
-        --sidebar-width: 5rem;
+        --sidebar-1-minwidth: 5rem;
+        /* --sidebar-width: 5rem; */
         --nav-height: 5rem;
     }
 
@@ -991,25 +1039,27 @@ div.search_icon {
     }
 
     #main_container {
-        grid-template-columns: minmax(var(--sidebar-width), 1fr) 8fr;
-        grid-template-rows: var(--nav-height    ) auto;
+        grid-template-columns: minmax(var(--sidebar-1-minwidth), 1fr) 8fr;
+        grid-template-rows: var(--nav-height) auto;
     }
 
     #sidebar {
         position: fixed;
         z-index: 4;
-        width: var(--sidebar-width);
+        width: var(--sidebar-1-minwidth);
     }
 
-    #sidebar_menu {
+    /* #sidebar_menu {
         padding: calc(var(--padding-xs) * 2);
-    }
-
-    #nav {
+    } */
+    #sidebar:has(input[type]:checked) .sidebar_item {
+        padding: 0 calc(var(--padding-s) * 2.5);
+      }
+    /* #nav {
         position: fixed;
         right: 0;
-        width: calc(100% - var(--sidebar-width)); 
-    }
+        width: 100%;
+    }*/
 
     #greet_container {
         display: none;
@@ -1095,14 +1145,76 @@ div.search_icon {
 }
 
 @media only screen and (max-width: 760px) {
-    #sidebar2 #team_container {
-        display: none;
-        background-color: black;
+    :root { 
+        --icon-width: ; 
+        --icon-width-1: 2rem;
+        --icon-width-2: 2.5rem;
+        --icon-width-3: ;
+        --icon-width-nav: 1.5rem;
+        --icon-chatbox: ;
+        --input-height: 2.5rem;
     }
 
+    #sidebar_menu {
+        padding: 0 var(--padding-m);
+    }
+    
+    .siderbar_item .name {
+        display: inline;
+    }
+    
+
+    #sidebar:has(input[id="check"]:checked) .sidebar_item {
+        padding: 0 var(--padding-xs);
+    }
+
+    #nav_content_wrapper {
+        gap: var(--gap-s);
+    }
+
+    #right_side {
+        gap: var(--gap-s);
+    }
+
+    #buttons_container button.proj_button {
+        padding: 0 calc(var(--padding-xs) * 3);
+    }
+
+    #sidebar2 #team_container {
+        display: none;
+    }
+
+    #sidebar2 {
+        padding: 0 var(--padding-m);
+        justify-self: center;
+        justify-content: center;
+        padding-top: var(--padding-s);
+        padding-bottom: var(--padding-m);
+        max-width: var(--announcement-max-width);
+    }
+    
     #sidebar2 #announce_container {
         grid-row: 1;
-        padding-inline: var(--padding-m);   
+        /* padding-inline: var(--padding-m);    */
         height: unset;
+    }
+    
+    #announce_container #announcements {
+        width: unset;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    html {
+        font-size: 14px;
+        --rem: 14;
+    }
+
+    :root, :host {
+        --rem: 12;
+    }
+
+    #buttons_container button.proj_button{
+        padding: 0 calc(var(--padding-s));
     }
 }
