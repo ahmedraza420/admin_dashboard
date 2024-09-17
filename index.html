@@ -413,15 +413,16 @@
         }  
 
         document.querySelectorAll(".project_link").forEach(link => {
-            link.addEventListener('touchstart', e => {
+            link.addEventListener('touchend', e => {
                 e.preventDefault();
-                // console.log(e.target.closest('.project_wrapper'));                                                                                       
-                toggleClass(e.target.closest('.project_wrapper'), 'hovered');
+                document.querySelectorAll(".project_wrapper").forEach(item => {
+                    item.classList.remove('hovered');
+                });
+                addHoverClass(e.target.closest('.project_wrapper'), 'hovered');
             });
-            link.addEventListener('touchend', e => {e.preventDefault()});
         })
 
-        function toggleClass (element, className) {
+        function addHoverClass (element, className) {
             if(element.classList.contains(className)){
                 element.classList.remove(className);
             }
