@@ -179,7 +179,7 @@ svg {
 #main_container {
     display: grid;
     position: relative;
-    grid-template-columns: minmax(var(--sidebar-1-minwidth), var(--sidebar-1-fr)) minmax(var(--main-minwidth), var(--main-fr)) minmax(var(--sidebar-2-minwidth), var(--sidebar-2-fr));
+    grid-template-columns: var(--sidebar-1-minwidth) minmax(var(--main-minwidth), var(--main-fr)) minmax(var(--sidebar-2-minwidth), var(--sidebar-2-fr));
     grid-template-rows: auto 1fr;
     min-height: 100dvh;
     min-width: fit-content;
@@ -220,6 +220,7 @@ input[type="checkbox"]:checked > svg {
     overflow-y: auto;
     transition: all var(--trans-t-3) ease;  
     z-index: 4; 
+    width: var(--sidebar-1-minwidth);
 }
 
 .burger_menu_wrapper {
@@ -760,7 +761,7 @@ div.search_icon {
     box-shadow: 1rem 1rem 1rem -1rem var(--c-black-alpha-300);
 }    
 
-.project_img_container:hover + .project_details, .project_img_container.hovered + .project_details {
+.project_img_container:hover + .project_details, .project_card:has(.project_wrapper.hovered) .project_details {
     height: calc(var(--padding-s) * 2 + var(--fs-h3-2));
     box-shadow: 0 -0.25rem 0.25rem -0.25rem var(--c-black-alpha-300);
 }

@@ -414,13 +414,14 @@
 
         document.querySelectorAll(".project_link").forEach(link => {
             link.addEventListener('touchstart', e => {
-                // e.preventDefault();
-                toggleClass(e.target.parentNode);
+                e.preventDefault();
+                // console.log(e.target.closest('.project_wrapper'));                                                                                       
+                toggleClass(e.target.closest('.project_wrapper'), 'hovered');
             });
             link.addEventListener('touchend', e => {e.preventDefault()});
         })
 
-        function toggleClass (elmeent, className) {
+        function toggleClass (element, className) {
             if(element.classList.contains(className)){
                 element.classList.remove(className);
             }
