@@ -414,9 +414,10 @@
 
         document.querySelectorAll(".project_link").forEach(link => {
             link.addEventListener('touchstart', e => {
-                e.preventDefault();
+                // e.preventDefault();
                 toggleClass(e.target.parentNode);
             });
+            link.addEventListener('touchend', e => {e.preventDefault()});
         })
 
         function toggleClass (elmeent, className) {

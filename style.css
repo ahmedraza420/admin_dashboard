@@ -208,8 +208,9 @@ input[type="checkbox"]:checked > svg {
     padding: var(--padding-s) 0;
     text-align: center;
     background: var(--c-primary);
-    height: calc(100dvh - var(--nav-height));
-    position: sticky;
+    /* height: calc(100dvh - var(--nav-height)); */
+    height: 100%;
+    position: fixed;
     top: var(--nav-height);
     align-self: start;
     display: flex;
@@ -218,6 +219,7 @@ input[type="checkbox"]:checked > svg {
     overflow-x: hidden;
     overflow-y: auto;
     transition: all var(--trans-t-3) ease;  
+    z-index: 4; 
 }
 
 .burger_menu_wrapper {
@@ -311,6 +313,8 @@ input[type="checkbox"] {
 }
 
 #sidebar_menu {
+    position: fixed;
+    top: calc(var(--icon-width-nav) * 2 + var(--fs-h1) + var(--padding-m) * 2);
     padding: 0 var(--padding-m);
     justify-self: center;
 }
@@ -971,7 +975,7 @@ div.search_icon {
         /* position: fixed; */
         /* position: sticky; */
         width: var(--sidebar-1-minwidth);
-        z-index: 4;
+        /* z-index: 2; */
         transition: all var(--trans-t-3) ease;
     }
 
@@ -988,6 +992,7 @@ div.search_icon {
     #sidebar_menu {
         --menu-item-height: 3rem;
         gap: var(--gap-s);
+        top: calc(var(--padding-m) + var(--padding-s));
     }
 
     .sidebar_item .name {
@@ -1004,7 +1009,7 @@ div.search_icon {
     #sidebar:has(input[type]:checked) {
         --sidebar-width: 200px;
         width: var(--sidebar-width);
-        transition: all var(--trans-t-3) ease;
+        transition: all var(--trans-t-3) ease;   
     }
 
     #main_container:has(input[id='check']:checked) .burger span {
@@ -1207,14 +1212,31 @@ div.search_icon {
 @media only screen and (max-width: 480px) {
     html {
         font-size: 14px;
-        --rem: 14;
+        /* --rem: 14; */
+    }
+    :root {
+        --sidebar-1-minwidth: 4rem;
+        --nav-height: 4rem;
+    }
+    
+    #sidebar_menu {
+        top: var(--padding-s);
     }
 
-    :root, :host {
-        --rem: 12;
+    #main {
+        padding-inline: var(--padding-s);
+    }
+
+    #sidebar2 {
+        padding-inline: var(--padding-s);
     }
 
     #buttons_container button.proj_button{
         padding: 0 calc(var(--padding-s));
+    }
+
+    #sidebar2 #announce_container {
+        min-width: min-content;
+        flex-shrink: 1;
     }
 }
