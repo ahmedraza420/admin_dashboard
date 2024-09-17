@@ -54,8 +54,8 @@ body {
     --nav-height: 6rem;
     --menu-item-width: 12rem;
     --menu-item-height: 3.5rem;
-    --search-normal-width: 150px;
-    --search-focus-width: 400px;
+    --search-normal-width: 9rem;
+    --search-focus-width: 25rem;
     --icon-width-nav: 2rem;
     --icon-chatbox: 1.5rem;
     --icon-width-1: 2.5rem;
@@ -66,17 +66,17 @@ body {
     --b-radius-s: 0.5rem;
     --b-radius-m: 0.75rem;
     --b-radius-l: 1rem;
-    --b-width-s: 2px;
+    --b-width-s: 0.125rem;
     --trans-t-1: 0.1s;
     --trans-t-2: 0.25s;
     --trans-t-3: 0.35s;
     --trans-t-4: 0.7s;
     --trans-t-func-1: cubic-bezier(0.645, 0.045, 0.355, 1);
     --noti-dot-width: 0.75rem;
-    --sidebar-1-minwidth: 250px;
-    --sidebar-2-minwidth: 300px;
+    --sidebar-1-minwidth: 15.625rem;
+    --sidebar-2-minwidth: 18.75rem;
     --sidebar-2-height: 22rem;
-    --main-minwidth: 500px;
+    --main-minwidth: 31.25rem;
     --sidebar-1-fr: 1fr;
     --sidebar-2-fr: 3fr;
     --main-fr: 9fr;
@@ -228,7 +228,8 @@ input[type="checkbox"]:checked > svg {
     min-width: var(--icon-width-nav);
     padding: 0 var(--padding-m);
     transition: all var(--trans-t-3) ease;
-    display: flex;
+    /* display: flex; */
+    display: none;
     justify-content: flex-start;
     align-items: center;
 }
@@ -261,7 +262,7 @@ input[type="checkbox"] {
     height: 20%;
     width: 100%;
     position: absolute;
-    border-radius: 100px;
+    border-radius: 6.25rem;
     left: 0;
     transition: all var(--trans-t-3) ease;
 }
@@ -384,7 +385,7 @@ li > * {
     align-items: center;
     background: var(--c-primary-100);
     height: var(--nav-height);
-    padding-right: var(--padding-s);
+    padding-inline: var(--padding-l) var(--padding-m);
     top: 0;
     position: sticky;
     z-index: 2;
@@ -393,6 +394,7 @@ li > * {
 }
 
 #nav_content_wrapper {
+    grid-column: 1 / span 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -450,7 +452,6 @@ li > * {
 
 .search_container {
     display: flex;
-    /* width: 150px; */
     flex-basis: var(--search-normal-width);
     min-width: var(--search-normal-width);
     max-width: var(--search-focus-width);  
@@ -772,7 +773,7 @@ div.search_icon {
     grid-row: 2;
     height: calc(100dvh - var(--nav-height)); 
     display: grid;
-    grid-template-rows: minmax(300px, 1fr) minmax(300px, 1fr);
+    grid-template-rows: minmax(18.75rem, 1fr) minmax(18.75rem, 1fr);
     gap: var(--gap-m);
     position: sticky;
     top: calc(var(--nav-height));
@@ -948,15 +949,90 @@ div.search_icon {
     border-top: var(--b-width-s) solid var(--border-col);
 }
 
+/* GITHUB REPOSITORY ICON STYLE */
+
+.github_container {
+    margin: 0 10px;
+    position: fixed;
+    top: 90dvh;
+   }
+  .github_container .github_tooltip {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--c-secondary);
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+   .github_container:hover .github_tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -30px;
+  }
+   .github_container a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--icon-width-2);
+    height: var(--icon-width-2);
+    /* width: 50px;
+    height: 50px; */
+    border-radius: 50%;
+    color: #4d4d4d;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  .github_container a:hover {
+    box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+  }
+   .github_container a svg {
+    position: relative;
+    z-index: 1;
+    width: var(--icon-width-nav);
+    height: var(--icon-width-nav);
+  }
+  .github_container a:hover {
+    color: white;
+  }
+   .github_container a .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+  }
+  .github_container a:hover .filled {
+    height: 100%;
+  }
+
+   .github_container a[data-social="github"] .filled,
+   .github_container a[data-social="github"] ~ .github_tooltip {
+    background-color: #24262a;
+  }
+  
+/* END */
+
+
 @media only screen and (max-width: 1300px) {
     :root {
-        --sidebar-1-minwidth: 100px;
+        --sidebar-1-minwidth: 6.25rem;
         --sidebar-1-fr: 1fr;
     }
 
     .burger_menu_wrapper {
         padding: 0;
         margin: auto;
+        display: flex;
         
     }
 
@@ -1008,7 +1084,7 @@ div.search_icon {
     }
 
     #sidebar:has(input[type]:checked) {
-        --sidebar-width: 200px;
+        --sidebar-width: 12.5rem;
         width: var(--sidebar-width);
         transition: all var(--trans-t-3) ease;   
     }
@@ -1024,7 +1100,15 @@ div.search_icon {
     #sidebar:has(input[type]:checked) .sidebar_item .name {
         display: inline;
     }
-/*
+
+    #nav {
+        padding-left: 0;
+    }
+
+    #nav_content_wrapper {
+        grid-column: 2;
+    }
+    /*
     #nav {
         position: fixed;
         right: 0;
@@ -1066,6 +1150,11 @@ div.search_icon {
         right: 0;
         width: 100%;
     }*/
+
+    
+    #nav {
+        padding-right: var(--padding-s);
+    }
 
     #greet_container {
         display: none;
@@ -1218,6 +1307,7 @@ div.search_icon {
     :root {
         --sidebar-1-minwidth: 4rem;
         --nav-height: 4rem;
+        --search-normal-width: 6.25rem;
     }
     
     #sidebar_menu {
