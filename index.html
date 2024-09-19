@@ -441,9 +441,9 @@
         });
 
         function addHoverClassToggle(element, elementQueryName, className) {
+            console.log(element, className, elementQueryName);
             if(element.classList.contains(className)){
                 element.classList.remove(className);
-                console.log('removing');
             }
             else
             {

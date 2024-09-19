@@ -233,7 +233,6 @@ svg {
 }
 
 .sidebar-menu {
-    position: fixed;
     top: calc(var(--icon-width-nav) * 2 + var(--fs-h1) + var(--padding-m) * 2);
     padding: 0 var(--padding-m);
     justify-self: center;
@@ -294,6 +293,12 @@ svg {
     box-shadow: 0.5rem 0.5rem 0.5rem -0.5rem var(--c-black-alpha-300);
 }
 
+.sidebar-item-name, .org-name, .dash-container, .member {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;  
+}
 .burger-menu-wrapper {
     height: var(--nav-height);
     min-width: var(--sidebar-1-minwidth);
@@ -1146,10 +1151,29 @@ input[type="checkbox"] {
         display: inline;
     }
     
+    .search-container:focus-within ~ * {
+        display: none;
+        transition: all var(--trans-t-3) ease;
+    }
+
     .buttons-container button.proj-button {
         padding: 0 calc(var(--padding-xs) * 3);
     }
+
+    .project-card {
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+    }
     
+    .project-card * {
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+    }
+
     .sidebar2 .team-container {
         display: none;
     }
@@ -1180,7 +1204,7 @@ input[type="checkbox"] {
 @media only screen and (max-width: 480px) {
     :root {
         --nav-height: 4rem;
-        --search-normal-width: 6.25rem;
+        --search-normal-width: 7rem;
         --sidebar-1-minwidth: 4rem;
     }
     
