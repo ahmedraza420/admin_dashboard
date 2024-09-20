@@ -234,7 +234,6 @@ svg {
 }
 
 .sidebar-menu {
-    top: calc(var(--icon-width-nav) * 2 + var(--fs-h1) + var(--padding-m) * 2);
     padding: 0 var(--padding-m);
     justify-self: center;
 }
@@ -473,7 +472,7 @@ input[type="checkbox"] {
     display: grid;
     gap: var(--gap-m);
     list-style-type: none;
-    
+    transition: all var(--trans-t-3) ease;
 }
 
 .sidebar-item > * {
@@ -892,8 +891,8 @@ input[type="checkbox"] {
 } */
 
 .projects-grid:has(.card-container:hover) > .card-container:not(:hover) .project-details {
-    /* filter: brightness(90%) ;   */
-    background-color: var(--c-primary-alpha-100);
+    filter: brightness(95%) ;  
+    /* background-color: var(--c-primary-alpha-100); */
 }    
 
 /* .card-container:hover {
@@ -966,7 +965,7 @@ input[type="checkbox"] {
 /* || GITHUB REPOSITORY ICON STYLE */
 .github-container {
     position: fixed;
-    top: 90dvh;
+    bottom: 2.5svh;
     margin: 0 10px;
 }
 .github-container .github-tooltip {
@@ -1066,7 +1065,8 @@ input[type="checkbox"] {
 
     .sidebar-menu {
         --menu-item-height: 3rem;
-        top: calc(var(--padding-m) + var(--padding-s));
+        /* top: calc(var(--padding-m) + var(--padding-s)); */
+        margin-top: calc(var(--margin-s) / 1.5);
         gap: var(--gap-s);
     }
 
@@ -1189,6 +1189,7 @@ input[type="checkbox"] {
     }
 
     .sidebar-menu {
+        margin-top: var(--margin-xs);
         padding: 0 var(--padding-m);
     }
     
@@ -1202,7 +1203,7 @@ input[type="checkbox"] {
     }
 
     .buttons-container button.proj-button {
-        padding: 0 calc(var(--padding-xs) * 3);
+        padding: 0 calc(var(--padding-xs) * 2.5);
     }
 
     .project-card {
@@ -1257,16 +1258,12 @@ input[type="checkbox"] {
         font-size: 14px;
     }
 
-    .sidebar-menu {
-        top: var(--padding-s);
-    }
-
     .main {
         padding-inline: var(--padding-s);
     }
     
         .buttons-container button.proj-button{
-            padding: 0 calc(var(--padding-s));
+            padding: 0 calc(var(--padding-s) / 1.5);
         }
 
     .sidebar2 {
