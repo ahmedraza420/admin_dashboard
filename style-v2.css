@@ -890,7 +890,7 @@ input[type="checkbox"] {
     animation: arrowAnimate var(--trans-t-5) ease infinite;
 } */
 
-.projects-grid:has(.card-container:hover) > .card-container:not(:hover) .project-details {
+.projects-grid:has(.project-card--hovered) > .card-container:not(:has(.project-card--hovered )) .project-details {
     filter: brightness(95%) ;  
     /* background-color: var(--c-primary-alpha-100); */
 }    
