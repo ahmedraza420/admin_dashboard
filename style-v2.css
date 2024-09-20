@@ -60,6 +60,7 @@
     --sidebar-2-minwidth: 18.75rem;
     /* Sizes */
     --announcement-max-width: 50ch;
+    --btn-max-width: 10rem;
     --card-width: 17.5rem;
     --icon-width-nav: 2rem;
     --icon-chatbox: 1.5rem;
@@ -495,6 +496,7 @@ input[type="checkbox"] {
     min-height: var(--input-height);
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
     gap: var(--gap-m);
     grid-column: 1;
     grid-row: 1;
@@ -508,6 +510,8 @@ input[type="checkbox"] {
     border-radius: var(--b-radius-s);
     padding: 0 calc(var(--padding-xs) + var(--padding-s));
     height:var(--input-height);
+    max-width: var(--btn-max-width);
+    flex: 1;
     font-weight: var(--fw-medium);
     color: var(--c-primary);    
     background: var(--c-primary-100);
@@ -1067,6 +1071,7 @@ input[type="checkbox"] {
         --menu-item-height: 3rem;
         /* top: calc(var(--padding-m) + var(--padding-s)); */
         margin-top: calc(var(--margin-s) / 1.5);
+        margin-bottom: calc(var(--icon-width-3) * 2);
         gap: var(--gap-s);
     }
 
@@ -1262,9 +1267,9 @@ input[type="checkbox"] {
         padding-inline: var(--padding-s);
     }
     
-        .buttons-container button.proj-button{
-            padding: 0 calc(var(--padding-s) / 1.5);
-        }
+    .buttons-container button.proj-button{
+        padding: 0 calc(var(--padding-s) / 2);
+    }
 
     .sidebar2 {
         padding-inline: var(--padding-s);
