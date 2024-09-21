@@ -433,33 +433,43 @@
     <script defer>
         let touchDevice = false;
 
-        document.querySelectorAll(".project-card").forEach(link => {
-            link.addEventListener('touchend', e => {
-                addHoverClassToggle(e.target.closest('.project-card'), '.project-card', 'project-card--hovered');
+        document.querySelectorAll(".project-card").forEach(item => {
+            item.addEventListener('touchend', e => {
+                hoverClassToggle(e.target.closest('.project-card'), '.project-card', 'project-card--hovered');
             });
-            link.addEventListener('mouseenter', e => {
+            item.addEventListener('mouseenter', e => {
                 if (!touchDevice) {
-                    addHoverClassToggle(e.target.closest('.project-card'), '.project-card', 'project-card--hovered');
+                    hoverClassToggle(e.target.closest('.project-card'), '.project-card', 'project-card--hovered');
                 }
             });
-            link.addEventListener('mouseleave', e => {
+            item.addEventListener('mouseleave', e => {
                 e.target.closest('.project-card').classList.remove('project-card--hovered')
+            });
+            item.addEventListener('click', e => {
+                if(!touchDevice) {
+                    hoverClassToggle(e.target.closest('.project-card'), '.project-card', 'project-card--hovered');
+                }
             });
         })
 
-        function addHoverClassToggle(element, elementQueryName, className1) {
+        document.querySelectorAll(".pr-details-btn-group").forEach(item => {
+            item.addEventListener("click", e => {e.stopPropagation()});
+        });
+
+        document.querySelectorAll(".pr-details-btn-group").forEach(item => {
+            item.addEventListener("touchend", e => {e.stopPropagation()});
+        });
+
+        function hoverClassToggle(element, elementQueryName, className1) {
             if(element.classList.contains(className1)){
                 element.classList.remove(className1);
-                // element.classList.add(className2)
             }
             else
             {
                 document.querySelectorAll(elementQueryName).forEach(item => {
                     item.classList.remove(className1);
-                    // item.classList.add(className2)
                 });
                 element.classList.add(className1);
-                // element.classList.remove(className2);
             }
         } 
     </script>
